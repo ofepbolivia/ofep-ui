@@ -1,0 +1,386 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *, [data-theme="dark"], [data-theme="dark"] *));
+
+@theme {
+  --font-sans: "Inter Variable", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  --color-background: var(--ofep-background);
+  --color-foreground: var(--ofep-foreground);
+  --color-surface: var(--ofep-surface);
+  --color-surface-muted: var(--ofep-surface-muted);
+  --color-surface-canvas: var(--ofep-surface-canvas);
+  --color-surface-document: var(--ofep-surface-document);
+  --color-surface-subtle: var(--ofep-surface-subtle);
+  --color-surface-sunken: var(--ofep-surface-sunken);
+  --color-surface-raised: var(--ofep-surface-raised);
+  --color-surface-overlay: var(--ofep-surface-overlay);
+  --color-border: var(--ofep-border);
+  --color-border-subtle: var(--ofep-border-subtle);
+  --color-border-strong: var(--ofep-border-strong);
+  --color-muted-foreground: var(--ofep-muted-foreground);
+  --color-primary: var(--ofep-primary);
+  --color-primary-foreground: var(--ofep-primary-foreground);
+  --color-primary-hover: var(--ofep-primary-hover);
+  --color-primary-subtle: var(--ofep-primary-subtle);
+  --color-brand: var(--ofep-brand);
+  --color-brand-foreground: var(--ofep-brand-foreground);
+  --color-brand-hover: var(--ofep-brand-hover);
+  --color-brand-subtle: var(--ofep-brand-subtle);
+  --color-arc-yellow: var(--ofep-arc-yellow);
+  --color-arc-green: var(--ofep-arc-green);
+  --color-arc-orange: var(--ofep-arc-orange);
+  --color-arc-purple: var(--ofep-arc-purple);
+  --color-arc-red: var(--ofep-arc-red);
+  --color-arc-blue: var(--ofep-arc-blue);
+  --color-destructive: var(--ofep-destructive);
+  --color-destructive-foreground: var(--ofep-destructive-foreground);
+  --color-destructive-subtle: var(--ofep-destructive-subtle);
+  --color-success: var(--ofep-success);
+  --color-success-hover: var(--ofep-success-hover);
+  --color-success-foreground: var(--ofep-success-foreground);
+  --color-success-subtle: var(--ofep-success-subtle);
+  --color-warning: var(--ofep-warning);
+  --color-warning-hover: var(--ofep-warning-hover);
+  --color-warning-foreground: var(--ofep-warning-foreground);
+  --color-warning-subtle: var(--ofep-warning-subtle);
+  --color-info: var(--ofep-info);
+  --color-info-foreground: var(--ofep-info-foreground);
+  --color-info-subtle: var(--ofep-info-subtle);
+  --color-accent: var(--ofep-accent);
+  --color-accent-foreground: var(--ofep-accent-foreground);
+  --color-accent-subtle: var(--ofep-accent-subtle);
+  --color-ring: var(--ofep-ring);
+  --color-overlay: var(--ofep-overlay);
+
+  --radius-xs: 0.25rem;
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+
+  --shadow-resting: var(--ofep-shadow-resting);
+  --shadow-raised: var(--ofep-shadow-raised);
+  --shadow-floating: var(--ofep-shadow-floating);
+  --shadow-overlay: var(--ofep-shadow-overlay);
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+
+  --animate-collapsible-down: collapsible-down 0.2s ease-out;
+  --animate-collapsible-up: collapsible-up 0.2s ease-out;
+
+  @keyframes collapsible-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-collapsible-content-height);
+    }
+  }
+
+  @keyframes collapsible-up {
+    from {
+      height: var(--radix-collapsible-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+
+  --animate-sidebar-in: sidebar-in 0.3s ease-out;
+  --animate-sidebar-out: sidebar-out 0.2s ease-in;
+
+  @keyframes sidebar-in {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes sidebar-out {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+
+  --animate-overlay-in: overlay-in 0.2s ease-out;
+  --animate-overlay-out: overlay-out 0.15s ease-in;
+
+  @keyframes overlay-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes overlay-out {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  --animate-dialog-in: dialog-in 0.2s ease-out;
+  --animate-dialog-out: dialog-out 0.15s ease-in;
+
+  @keyframes dialog-in {
+    from {
+      opacity: 0;
+      transform: scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes dialog-out {
+    from {
+      opacity: 1;
+      transform: scale(1);
+    }
+    to {
+      opacity: 0;
+      transform: scale(0.96);
+    }
+  }
+
+  --animate-dropdown-in: dropdown-in 0.15s ease-out;
+  --animate-dropdown-out: dropdown-out 0.1s ease-in;
+
+  @keyframes dropdown-in {
+    from {
+      opacity: 0;
+      transform: scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes dropdown-out {
+    from {
+      opacity: 1;
+      transform: scale(1);
+    }
+    to {
+      opacity: 0;
+      transform: scale(0.96);
+    }
+  }
+
+  --animate-toast-in: toast-in 0.2s ease-out;
+  --animate-toast-out: toast-out 0.15s ease-in forwards;
+
+  @keyframes toast-in {
+    from {
+      opacity: 0;
+      transform: translateX(1rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes toast-out {
+    from {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateX(1rem);
+    }
+  }
+}
+
+:root {
+  /* Brand reference values (logo source) — do not use directly in components */
+  --ofep-brand-primary: #b8242a;
+  --ofep-brand-neutral-dark: #3a3a3a;
+  --ofep-accent-red: #a61c1e;
+  --ofep-accent-orange-dark: #d35127;
+  --ofep-accent-orange: #e57b25;
+  --ofep-accent-yellow: #ecc129;
+  --ofep-accent-purple: #7e2e84;
+  --ofep-accent-blue: #2a5caa;
+  --ofep-accent-green: #5bb351;
+
+  /* Institutional arc — exact logo palette, for identity fills, data and charts */
+  --ofep-arc-yellow: var(--ofep-accent-yellow);
+  --ofep-arc-green: var(--ofep-accent-green);
+  --ofep-arc-orange: var(--ofep-accent-orange);
+  --ofep-arc-purple: var(--ofep-accent-purple);
+  --ofep-arc-red: var(--ofep-brand-primary);
+  --ofep-arc-blue: var(--ofep-accent-blue);
+
+  --ofep-disabled-opacity: 0.5;
+
+  /* Light theme — warm paper/ink neutrals derived from the brand gray */
+  --ofep-background: #fbfaf8;
+  --ofep-foreground: #2e2b28;
+  --ofep-surface: #ffffff;
+  --ofep-surface-muted: #f4f2ef;
+  --ofep-surface-canvas: var(--ofep-background);
+  --ofep-surface-document: var(--ofep-surface);
+  --ofep-surface-subtle: color-mix(in srgb, var(--ofep-surface) 65%, var(--ofep-surface-muted));
+  --ofep-surface-sunken: #faf9f7;
+  --ofep-surface-raised: var(--ofep-surface);
+  --ofep-surface-overlay: var(--ofep-surface);
+  --ofep-border: #e3ddd4;
+  --ofep-border-subtle: color-mix(in srgb, var(--ofep-border) 65%, transparent);
+  --ofep-border-strong: #c7bcb3;
+  --ofep-muted-foreground: #6f6459;
+  --ofep-overlay: rgb(0 0 0 / 0.55);
+
+  --ofep-primary: var(--ofep-brand-neutral-dark);
+  --ofep-primary-hover: #292725;
+  --ofep-primary-foreground: #ffffff;
+  --ofep-primary-subtle: #eeece9;
+
+  --ofep-brand: #b8242a;
+  --ofep-brand-hover: #9e1d24;
+  --ofep-brand-foreground: #ffffff;
+  --ofep-brand-subtle: #f9ecec;
+
+  --ofep-destructive: #8f1d25;
+  --ofep-destructive-foreground: #ffffff;
+  --ofep-destructive-subtle: #f8e9ea;
+
+  --ofep-success: #2d7a2e;
+  --ofep-success-hover: #256a26;
+  --ofep-success-foreground: #ffffff;
+  --ofep-success-subtle: #e8f2e8;
+
+  --ofep-warning: #b9410a;
+  --ofep-warning-hover: #9d3709;
+  --ofep-warning-foreground: #ffffff;
+  --ofep-warning-subtle: #fbede6;
+
+  --ofep-info: #2a5caa;
+  --ofep-info-foreground: #ffffff;
+  --ofep-info-subtle: #eaf1fa;
+
+  --ofep-accent: #7e2e84;
+  --ofep-accent-foreground: #ffffff;
+  --ofep-accent-subtle: #f6ebf8;
+
+  --ofep-ring: var(--ofep-brand);
+  --ofep-shadow-resting: 0 1px 2px rgb(46 43 40 / 0.06);
+  --ofep-shadow-raised: 0 1px 3px rgb(46 43 40 / 0.08), 0 1px 2px rgb(46 43 40 / 0.04);
+  --ofep-shadow-floating: 0 8px 24px rgb(46 43 40 / 0.1), 0 2px 8px rgb(46 43 40 / 0.06);
+  --ofep-shadow-overlay: 0 20px 48px rgb(46 43 40 / 0.16), 0 4px 16px rgb(46 43 40 / 0.08);
+}
+
+.dark,
+[data-theme="dark"] {
+  /* Dark theme — same warm hue family, only lightness shifts */
+  --ofep-background: #161413;
+  --ofep-foreground: #f3ede6;
+  --ofep-surface: #1e1c1b;
+  --ofep-surface-muted: #262423;
+  --ofep-surface-canvas: var(--ofep-background);
+  --ofep-surface-document: var(--ofep-surface);
+  --ofep-surface-subtle: color-mix(in srgb, var(--ofep-surface) 65%, var(--ofep-surface-muted));
+  --ofep-surface-sunken: #201e1d;
+  --ofep-surface-raised: color-mix(in srgb, var(--ofep-surface) 88%, white);
+  --ofep-surface-overlay: color-mix(in srgb, var(--ofep-surface) 82%, white);
+  --ofep-border: #332e29;
+  --ofep-border-subtle: color-mix(in srgb, var(--ofep-border) 65%, transparent);
+  --ofep-border-strong: #463d38;
+  --ofep-muted-foreground: #b3a595;
+  --ofep-overlay: rgb(0 0 0 / 0.7);
+
+  --ofep-primary: #eee7df;
+  --ofep-primary-hover: #fffaf4;
+  --ofep-primary-foreground: #211e1c;
+  --ofep-primary-subtle: #302d2b;
+
+  --ofep-brand: #e06a60;
+  --ofep-brand-hover: #ec7d73;
+  --ofep-brand-foreground: #2b0d0c;
+  --ofep-brand-subtle: #2a1a17;
+
+  --ofep-destructive: #ff8a80;
+  --ofep-destructive-foreground: #2b0d0c;
+  --ofep-destructive-subtle: #351919;
+
+  --ofep-success: #84c97b;
+  --ofep-success-hover: #9ad392;
+  --ofep-success-foreground: #12231c;
+  --ofep-success-subtle: #1d2b21;
+
+  --ofep-warning: #e3a066;
+  --ofep-warning-hover: #efb27f;
+  --ofep-warning-foreground: #1f150e;
+  --ofep-warning-subtle: #2a2013;
+
+  --ofep-info: #93b4e5;
+  --ofep-info-foreground: #101923;
+  --ofep-info-subtle: #1b2436;
+
+  --ofep-accent: #c48aae;
+  --ofep-accent-foreground: #221a24;
+  --ofep-accent-subtle: #221a24;
+
+  --ofep-ring: var(--ofep-brand);
+  --ofep-shadow-resting: 0 1px 2px rgb(0 0 0 / 0.18);
+  --ofep-shadow-raised: 0 2px 6px rgb(0 0 0 / 0.22);
+  --ofep-shadow-floating: 0 10px 28px rgb(0 0 0 / 0.28);
+  --ofep-shadow-overlay: 0 24px 56px rgb(0 0 0 / 0.36);
+}
+
+@layer base {
+  * {
+    border-color: var(--ofep-border);
+  }
+
+  body {
+    background: var(--ofep-background);
+    color: var(--ofep-foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    text-rendering: optimizeLegibility;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
