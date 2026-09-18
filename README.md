@@ -5,7 +5,7 @@ Institutional React design system distributed as a single Git-installed package.
 ## Installation
 
 ```bash
-pnpm add git+ssh://git@github.com:institucion/ofep-ui.git#v0.1.0
+pnpm add git+ssh://git@github.com:ofepbolivia/ofep-ui.git#v0.1.0
 ```
 
 Use Git tags for reproducible installs. Avoid installing from `main` in production applications.
