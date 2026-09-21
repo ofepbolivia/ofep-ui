@@ -1,4 +1,5 @@
 import type { Decorator, Meta, StoryObj } from '@storybook/react-vite'
+import * as React from 'react'
 import {
   Button,
   Stack,
@@ -12,7 +13,17 @@ import {
   ToastViewport,
   Toaster,
   toast,
+  type ToastPosition,
 } from '../../../src'
+
+const toastPositions: ToastPosition[] = [
+  'top-left',
+  'top-center',
+  'top-right',
+  'bottom-left',
+  'bottom-center',
+  'bottom-right',
+]
 
 const withFullHeightCanvas: Decorator = (Story) => (
   <div className="min-h-[55vh] [contain:paint]">
@@ -28,7 +39,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Transient message built on the Radix toast primitive. Mount `<Toaster />` once at the root and call the imperative `toast()` helper from anywhere — no provider wrapping required. Variants: `neutral`, `success`, `destructive`, `warning`, `info`. For full control use the declarative parts inside `ToastProvider` and always mount a `ToastViewport`.',
+          'Transient message built on the Radix toast primitive. Mount `<Toaster />` once at the root and call the imperative `toast()` helper from anywhere — no provider wrapping required. Variants: `neutral`, `success`, `destructive`, `warning`, `info`. `Toaster` and `ToastViewport` accept `position` (`top-left | top-center | top-right | bottom-left | bottom-center | bottom-right`), defaulting to `top-right`. For full control use the declarative parts inside `ToastProvider` and always mount a `ToastViewport`.',
       },
     },
   },
@@ -70,6 +81,32 @@ export const Imperative: Story = {
       <Toaster />
     </div>
   ),
+}
+
+export const Positions: Story = {
+  render: () => {
+    const [position, setPosition] = React.useState<ToastPosition>('top-right')
+
+    return (
+      <div>
+        <Stack direction="row" gap="sm" align="center" className="flex-wrap">
+          {toastPositions.map((option) => (
+            <Button
+              key={option}
+              variant={position === option ? 'primary' : 'secondary'}
+              onClick={() => setPosition(option)}
+            >
+              {option}
+            </Button>
+          ))}
+        </Stack>
+        <Button className="mt-4" onClick={() => toast.success(`Position: ${position}`)}>
+          Show toast
+        </Button>
+        <Toaster position={position} />
+      </div>
+    )
+  },
 }
 
 export const Variants: Story = {

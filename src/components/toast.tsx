@@ -41,14 +41,37 @@ const toastIconMap = {
 
 const ToastProvider = ToastPrimitive.Provider
 
+export type ToastPosition =
+  | 'top-left'
+  | 'top-center'
+  | 'top-right'
+  | 'bottom-left'
+  | 'bottom-center'
+  | 'bottom-right'
+
+const toastViewportPosition: Record<ToastPosition, string> = {
+  'top-left': 'top-0 left-0 flex-col-reverse',
+  'top-center': 'top-0 left-1/2 -translate-x-1/2 flex-col-reverse',
+  'top-right': 'top-0 right-0 flex-col-reverse',
+  'bottom-left': 'bottom-0 left-0 flex-col',
+  'bottom-center': 'bottom-0 left-1/2 -translate-x-1/2 flex-col',
+  'bottom-right': 'bottom-0 right-0 flex-col',
+}
+
+export interface ToastViewportProps
+  extends React.ComponentPropsWithoutRef<typeof ToastPrimitive.Viewport> {
+  position?: ToastPosition
+}
+
 const ToastViewport = React.forwardRef<
   React.ElementRef<typeof ToastPrimitive.Viewport>,
-  React.ComponentPropsWithoutRef<typeof ToastPrimitive.Viewport>
->(({ className, ...props }, ref) => (
+  ToastViewportProps
+>(({ className, position = 'top-right', ...props }, ref) => (
   <ToastPrimitive.Viewport
     ref={ref}
     className={cn(
-      'fixed bottom-0 right-0 z-[100] flex max-h-screen w-full flex-col gap-2 p-4 sm:max-w-sm',
+      'fixed z-[100] flex max-h-screen w-full gap-2 p-4 sm:max-w-sm',
+      toastViewportPosition[position],
       className,
     )}
     {...props}
@@ -234,17 +257,16 @@ export const toast = Object.assign(
   },
 )
 
-export interface ToasterProps
-  extends React.ComponentPropsWithoutRef<typeof ToastPrimitive.Viewport> {}
+export interface ToasterProps extends ToastViewportProps {}
 
 export const Toaster = React.forwardRef<
   React.ElementRef<typeof ToastPrimitive.Viewport>,
   ToasterProps
->(({ className, ...props }, ref) => {
+>(({ className, position = 'top-right', ...props }, ref) => {
   const toasts = React.useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot)
 
   return (
-    <ToastProvider swipeDirection="right">
+    <ToastProvider swipeDirection={position.endsWith('left') ? 'left' : 'right'}>
       {toasts.map(({ id, title, description, variant, duration, action }) => (
         <Toast
           key={id}
@@ -265,7 +287,7 @@ export const Toaster = React.forwardRef<
           <ToastClose />
         </Toast>
       ))}
-      <ToastViewport ref={ref} className={className} {...props} />
+      <ToastViewport ref={ref} position={position} className={className} {...props} />
     </ToastProvider>
   )
 })
