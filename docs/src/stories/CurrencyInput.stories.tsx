@@ -18,7 +18,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Currency input for PostgreSQL numeric values. It displays thousands with commas and decimals with a dot, for example `1,000.50`, but emits the canonical backend value without thousands separators through `onValueChange`, for example `1000.50`. Invalid or incomplete input emits `undefined`. `size` supports `sm | md | lg`.',
+          'Currency input for PostgreSQL numeric values. It displays thousands with dots and decimals with a comma, for example `1.800.000,00`, but emits the canonical backend value without thousands separators through `onValueChange`, for example `1800000.00`. Invalid or incomplete input emits `undefined`. `size` supports `sm | md | lg`.',
       },
     },
   },
@@ -32,7 +32,7 @@ const meta = {
     },
   },
   args: {
-    placeholder: '0.00',
+    placeholder: '0,00',
   },
 } satisfies Meta<typeof CurrencyInput>
 
@@ -104,7 +104,7 @@ export const WithFormField: Story = {
       <FormControl>
         <CurrencyInput name="amount" />
       </FormControl>
-      <FormDescription>Visual format: 1,000.50. Backend format: 1000.50.</FormDescription>
+      <FormDescription>Visual format: 1.800.000,00. Backend format: 1800000.00.</FormDescription>
       <FormMessage>Enter a valid amount.</FormMessage>
     </FormField>
   ),

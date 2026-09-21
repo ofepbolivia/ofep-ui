@@ -51,7 +51,7 @@ Bordered form field controls on `surface-sunken` use a bottom-border highlight o
 
 ## Form Data Formatting
 
-Inputs that need a human-friendly display format and a backend-safe value keep those concerns separate. The visual text belongs inside the component; the canonical wire value crosses the component boundary through `onValueChange`. `DatePicker` displays `dd/mm/aaaa` and emits `yyyy-MM-dd`. `CurrencyInput` and `FloatingCurrencyInput` display comma thousands with dot decimals, for example `1,000.50`, and emit PostgreSQL-ready numeric strings without thousands separators, for example `1000.50`. Use `type="text"` with the appropriate `inputMode` when native input types cannot represent the visual format reliably.
+Inputs that need a human-friendly display format and a backend-safe value keep those concerns separate. The visual text belongs inside the component; the canonical wire value crosses the component boundary through `onValueChange`. `DatePicker` displays `dd/mm/aaaa` and emits `yyyy-MM-dd`. `CurrencyInput` and `FloatingCurrencyInput` display dot thousands with comma decimals, for example `1.800.000,00`, and emit PostgreSQL-ready numeric strings without thousands separators, for example `1800000.00`. Use `type="text"` with the appropriate `inputMode` when native input types cannot represent the visual format reliably.
 
 ## Defaults To Avoid
 

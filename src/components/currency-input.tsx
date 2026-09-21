@@ -15,14 +15,14 @@ function cleanCurrencyText(value: string) {
   let next = ''
   let hasDecimal = false
 
-  for (const character of value.replace(/,/g, '')) {
+  for (const character of value) {
     if (character >= '0' && character <= '9') {
       next += character
       continue
     }
 
-    if (character === '.' && !hasDecimal) {
-      next += character
+    if (character === ',' && !hasDecimal) {
+      next += '.'
       hasDecimal = true
     }
   }
@@ -37,9 +37,9 @@ function cleanCurrencyText(value: string) {
 function formatCurrencyText(value: string) {
   const hasDecimal = value.includes('.')
   const [integer = '', decimals = ''] = value.split('.')
-  const groupedInteger = integer.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+  const groupedInteger = integer.replace(/\B(?=(\d{3})+(?!\d))/g, '.')
 
-  return hasDecimal ? `${groupedInteger}.${decimals}` : groupedInteger
+  return hasDecimal ? `${groupedInteger},${decimals}` : groupedInteger
 }
 
 function toCurrencyWire(value: string) {
@@ -55,7 +55,16 @@ function toCurrencyDisplay(value: string | undefined) {
     return ''
   }
 
-  return formatCurrencyText(cleanCurrencyText(value))
+  const match = /^(\d+)(?:\.(\d+))?$/.exec(value.trim())
+
+  if (!match) {
+    return ''
+  }
+
+  const integer = match[1]
+  const decimals = (match[2] ?? '').slice(0, 2)
+
+  return formatCurrencyText(decimals ? `${integer}.${decimals}` : integer)
 }
 
 export interface CurrencyInputProps
@@ -71,7 +80,7 @@ export const CurrencyInput = React.forwardRef<HTMLInputElement, CurrencyInputPro
       inputMode = 'decimal',
       onBlur,
       onValueChange,
-      placeholder = '0.00',
+      placeholder = '0,00',
       size,
       value,
       ...props
