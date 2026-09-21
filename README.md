@@ -129,7 +129,7 @@ Rules for contributors:
 - Neutral tones build structure and carry primary actions. Reserve `brand` for identity details: active tab indicator, focus ring, card top accent, and institutional status badges. Do not fill large surfaces with brand red.
 - Keep one hue family for all neutral surfaces; only shift lightness between theme levels.
 - Treat fields as inset surfaces, documents as flat surfaces, and transient UI as elevated surfaces.
-- Use the 4 px spacing grid and the `32 / 40 / 48 px` control scale for `sm / md / lg` form controls.
+- Use the 4 px spacing grid and the `32 / 40 / 48 px` control scale for `sm / md / lg` form controls. Labels follow the size of their control; set `size` once on `FormField` and it drives both the label and the control.
 - Each semantic token has a matching `*-subtle` background for tinted states (badges, alerts).
 - The full logo palette is also exposed as `arc-*` tokens (`arc-yellow`, `arc-green`, `arc-orange`, `arc-purple`, `arc-red`, `arc-blue`) for identity fills, data categories and charts. Use them only as fills or data marks, never as text on light surfaces.
 

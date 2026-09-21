@@ -6,7 +6,19 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '../lib/cn'
 
 const labelVariants = cva(
-  'select-none text-sm font-medium leading-none text-foreground peer-disabled:cursor-not-allowed peer-disabled:opacity-[var(--ofep-disabled-opacity)] group-data-[invalid=true]:text-destructive',
+  'select-none font-medium text-foreground peer-disabled:cursor-not-allowed peer-disabled:opacity-[var(--ofep-disabled-opacity)] group-data-[invalid=true]:text-destructive',
+  {
+    variants: {
+      size: {
+        sm: 'text-sm leading-none',
+        md: 'text-sm leading-none',
+        lg: 'text-base leading-none',
+      },
+    },
+    defaultVariants: {
+      size: 'md',
+    },
+  },
 )
 
 export interface LabelProps
@@ -16,8 +28,8 @@ export interface LabelProps
 export const Label = React.forwardRef<
   React.ElementRef<typeof LabelPrimitive.Root>,
   LabelProps
->(({ className, ...props }, ref) => (
-  <LabelPrimitive.Root ref={ref} className={cn(labelVariants(), className)} {...props} />
+>(({ className, size, ...props }, ref) => (
+  <LabelPrimitive.Root ref={ref} className={cn(labelVariants({ size }), className)} {...props} />
 ))
 
 Label.displayName = LabelPrimitive.Root.displayName

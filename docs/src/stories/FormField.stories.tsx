@@ -21,8 +21,14 @@ const meta = {
     docs: {
       description: {
         component:
-          'Wires labels, controls, descriptions and errors together without a form library. Generates ids with `useId`; `FormControl` (a Radix `Slot`) injects `id`, `aria-describedby` and `aria-invalid` into the control. Set `invalid` to color the label and control. `FormMessage` renders nothing when it has no children.',
+          'Wires labels, controls, descriptions and errors together without a form library. Generates ids with `useId`; `FormControl` (a Radix `Slot`) injects `id`, `aria-describedby` and `aria-invalid` into the control. `size` supports `sm | md | lg` and drives both the label typography and the control, so a single prop keeps them in sync. Set `invalid` to color the label and control. `FormMessage` renders nothing when it has no children.',
       },
+    },
+  },
+  argTypes: {
+    size: {
+      control: 'select',
+      options: ['sm', 'md', 'lg'],
     },
   },
 } satisfies Meta<typeof FormField>
@@ -53,6 +59,34 @@ export const WithError: Story = {
       <FormDescription>We only use it to contact you.</FormDescription>
       <FormMessage>Enter a valid email address.</FormMessage>
     </FormField>
+  ),
+}
+
+export const Sizes: Story = {
+  render: () => (
+    <div className="flex w-80 flex-col gap-5">
+      <FormField size="sm">
+        <FormLabel>Small field</FormLabel>
+        <FormControl>
+          <Input placeholder="Small" />
+        </FormControl>
+        <FormDescription>The label follows the field size.</FormDescription>
+      </FormField>
+      <FormField size="md">
+        <FormLabel>Base field</FormLabel>
+        <FormControl>
+          <Input placeholder="Base" />
+        </FormControl>
+        <FormDescription>The label follows the field size.</FormDescription>
+      </FormField>
+      <FormField size="lg">
+        <FormLabel>Large field</FormLabel>
+        <FormControl>
+          <Input placeholder="Large" />
+        </FormControl>
+        <FormDescription>The label follows the field size.</FormDescription>
+      </FormField>
+    </div>
   ),
 }
 

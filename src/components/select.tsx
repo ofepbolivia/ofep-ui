@@ -6,7 +6,6 @@ import { Check, ChevronDown, ChevronUp } from 'lucide-react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '../lib/cn'
 
-const Select = SelectPrimitive.Root
 const SelectGroup = SelectPrimitive.Group
 const SelectValue = SelectPrimitive.Value
 
@@ -30,21 +29,44 @@ export interface SelectTriggerProps
   extends React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger>,
     VariantProps<typeof selectTriggerVariants> {}
 
+type SelectSize = VariantProps<typeof selectTriggerVariants>['size']
+
+const SelectSizeContext = React.createContext<SelectSize>(undefined)
+
+export interface SelectProps
+  extends React.ComponentPropsWithoutRef<typeof SelectPrimitive.Root> {
+  size?: SelectSize
+}
+
+function Select({ size, children, ...props }: SelectProps) {
+  return (
+    <SelectSizeContext.Provider value={size}>
+      <SelectPrimitive.Root {...props}>{children}</SelectPrimitive.Root>
+    </SelectSizeContext.Provider>
+  )
+}
+
+Select.displayName = 'Select'
+
 export const SelectTrigger = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Trigger>,
   SelectTriggerProps
->(({ className, size, children, ...props }, ref) => (
-  <SelectPrimitive.Trigger
-    ref={ref}
-    className={cn(selectTriggerVariants({ size }), className)}
-    {...props}
-  >
-    <span className="line-clamp-1">{children}</span>
-    <SelectPrimitive.Icon asChild>
-      <ChevronDown className="text-muted-foreground" />
-    </SelectPrimitive.Icon>
-  </SelectPrimitive.Trigger>
-))
+>(({ className, size, children, ...props }, ref) => {
+  const inheritedSize = React.useContext(SelectSizeContext)
+
+  return (
+    <SelectPrimitive.Trigger
+      ref={ref}
+      className={cn(selectTriggerVariants({ size: size ?? inheritedSize }), className)}
+      {...props}
+    >
+      <span className="line-clamp-1">{children}</span>
+      <SelectPrimitive.Icon asChild>
+        <ChevronDown className="text-muted-foreground" />
+      </SelectPrimitive.Icon>
+    </SelectPrimitive.Trigger>
+  )
+})
 
 SelectTrigger.displayName = SelectPrimitive.Trigger.displayName
 

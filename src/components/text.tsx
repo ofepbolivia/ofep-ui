@@ -2,13 +2,13 @@ import * as React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '../lib/cn'
 
-const textVariants = cva('m-0 leading-relaxed', {
+const textVariants = cva('m-0', {
   variants: {
     size: {
-      xs: 'text-xs',
-      sm: 'text-sm',
-      md: 'text-base',
-      lg: 'text-lg',
+      xs: 'text-xs leading-relaxed',
+      sm: 'text-sm leading-relaxed',
+      md: 'text-base leading-relaxed',
+      lg: 'text-lg leading-relaxed',
     },
     tone: {
       primary: 'text-foreground',

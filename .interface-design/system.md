@@ -36,7 +36,8 @@ The base spacing unit is 4 px.
 - Form controls: `sm 32px`, `md 40px`, `lg 48px`
 - Buttons: `sm 32px`, `md 36px`, `lg 40px`
 - Compact icon actions and close buttons: 32px
-- Control icons: 16px
+- Control icons: 16px for text controls at every size; toggle controls (`Checkbox`, `RadioGroup`) scale their glyph with the control (`12 / 16 / 20 px` for `sm / md / lg`)
+- Labels follow the size of the control they label, and `FormField size` drives both the label and the control, so one prop keeps them in sync
 - Control radii: `rounded-md`
 - Document surfaces: `rounded-lg`
 

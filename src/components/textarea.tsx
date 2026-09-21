@@ -1,10 +1,28 @@
 'use client'
 
 import * as React from 'react'
+import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '../lib/cn'
 
+const textareaVariants = cva(
+  'peer flex w-full rounded-md border border-border bg-surface-sunken text-foreground transition-colors placeholder:text-muted-foreground focus-visible:outline-none focus-visible:border-b-ring disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-[var(--ofep-disabled-opacity)] aria-[invalid=true]:border-destructive/60 aria-[invalid=true]:focus-visible:border-b-destructive',
+  {
+    variants: {
+      size: {
+        sm: 'min-h-16 px-2.5 py-2 text-sm',
+        md: 'min-h-24 px-3 py-3 text-sm',
+        lg: 'min-h-28 px-3.5 py-3.5 text-base',
+      },
+    },
+    defaultVariants: {
+      size: 'md',
+    },
+  },
+)
+
 export interface TextareaProps
-  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+  extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'size'>,
+    VariantProps<typeof textareaVariants> {
   showCount?: boolean
   containerClassName?: string
 }
@@ -13,6 +31,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
   (
     {
       className,
+      size,
       showCount = false,
       containerClassName,
       maxLength,
@@ -44,10 +63,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         rows={rows}
         {...(isControlled ? { value } : { defaultValue })}
         onChange={handleChange}
-        className={cn(
-          'peer flex min-h-24 w-full rounded-md border border-border bg-surface-sunken px-3.5 py-3 text-base text-foreground transition-colors placeholder:text-muted-foreground focus-visible:outline-none focus-visible:border-b-ring disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-[var(--ofep-disabled-opacity)] aria-[invalid=true]:border-destructive/60 aria-[invalid=true]:focus-visible:border-b-destructive',
-          className,
-        )}
+        className={cn(textareaVariants({ size }), className)}
         {...props}
       />
     )
@@ -69,3 +85,5 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
 )
 
 Textarea.displayName = 'Textarea'
+
+export { textareaVariants }

@@ -9,8 +9,14 @@ const meta = {
     docs: {
       description: {
         component:
-          'Set of mutually exclusive options built on the Radix radio group primitive. Pair each `RadioGroupItem` with a `Label` through matching `id`/`htmlFor`. Arrow keys move between items.',
+          'Set of mutually exclusive options built on the Radix radio group primitive. `size` supports `sm | md | lg` and applies to every item in the group. Pair each `RadioGroupItem` with a `Label` through matching `id`/`htmlFor`. Arrow keys move between items.',
       },
+    },
+  },
+  argTypes: {
+    size: {
+      control: 'select',
+      options: ['sm', 'md', 'lg'],
     },
   },
 } satisfies Meta<typeof RadioGroup>
@@ -38,6 +44,31 @@ export const Default: Story = {
         <Label htmlFor="priority-urgent">Urgent</Label>
       </div>
     </RadioGroup>
+  ),
+}
+
+export const Sizes: Story = {
+  render: () => (
+    <Stack gap="lg">
+      <RadioGroup size="sm" defaultValue="a" className="w-56">
+        <div className="flex items-center gap-2">
+          <RadioGroupItem value="a" id="radio-size-sm" />
+          <Label htmlFor="radio-size-sm">Small</Label>
+        </div>
+      </RadioGroup>
+      <RadioGroup size="md" defaultValue="a" className="w-56">
+        <div className="flex items-center gap-2">
+          <RadioGroupItem value="a" id="radio-size-md" />
+          <Label htmlFor="radio-size-md">Base</Label>
+        </div>
+      </RadioGroup>
+      <RadioGroup size="lg" defaultValue="a" className="w-56">
+        <div className="flex items-center gap-2">
+          <RadioGroupItem value="a" id="radio-size-lg" />
+          <Label htmlFor="radio-size-lg">Large</Label>
+        </div>
+      </RadioGroup>
+    </Stack>
   ),
 }
 

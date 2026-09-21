@@ -9,8 +9,14 @@ const meta = {
     docs: {
       description: {
         component:
-          'Boolean control built on the Radix checkbox primitive. Pair with `Label` through matching `id`/`htmlFor`. For option cards, drive the container state with `has-[[data-state=checked]]`. Custom colors are set with `data-[state=checked]:*` utilities.',
+          'Boolean control built on the Radix checkbox primitive. `size` supports `sm | md | lg`. Pair with `Label` through matching `id`/`htmlFor`. For option cards, drive the container state with `has-[[data-state=checked]]`. Custom colors are set with `data-[state=checked]:*` utilities.',
       },
+    },
+  },
+  argTypes: {
+    size: {
+      control: 'select',
+      options: ['sm', 'md', 'lg'],
     },
   },
 } satisfies Meta<typeof Checkbox>
@@ -28,6 +34,25 @@ export const Default: Story = {
       <Checkbox id="checkbox-default" {...args} />
       <Label htmlFor="checkbox-default">Accept terms and conditions</Label>
     </div>
+  ),
+}
+
+export const Sizes: Story = {
+  render: () => (
+    <Stack gap="sm">
+      <div className="flex items-center gap-2">
+        <Checkbox id="checkbox-size-sm" size="sm" defaultChecked />
+        <Label htmlFor="checkbox-size-sm">Small</Label>
+      </div>
+      <div className="flex items-center gap-2">
+        <Checkbox id="checkbox-size-md" size="md" defaultChecked />
+        <Label htmlFor="checkbox-size-md">Base</Label>
+      </div>
+      <div className="flex items-center gap-2">
+        <Checkbox id="checkbox-size-lg" size="lg" defaultChecked />
+        <Label htmlFor="checkbox-size-lg">Large</Label>
+      </div>
+    </Stack>
   ),
 }
 

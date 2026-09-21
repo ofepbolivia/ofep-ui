@@ -2,12 +2,16 @@
 
 import * as React from 'react'
 import { Slot } from '@radix-ui/react-slot'
+import { type VariantProps } from 'class-variance-authority'
 import { cn } from '../lib/cn'
-import { Label } from './label'
+import { Label, labelVariants } from './label'
+
+type FormFieldSize = VariantProps<typeof labelVariants>['size']
 
 type FormFieldContextValue = {
   id: string
   invalid: boolean
+  size?: FormFieldSize
 }
 
 const FormFieldContext = React.createContext<FormFieldContextValue | null>(null)
@@ -24,12 +28,13 @@ function useFormField() {
 
 export interface FormFieldProps extends React.HTMLAttributes<HTMLDivElement> {
   invalid?: boolean
+  size?: FormFieldSize
 }
 
 export const FormField = React.forwardRef<HTMLDivElement, FormFieldProps>(
-  ({ className, invalid = false, ...props }, ref) => {
+  ({ className, invalid = false, size, ...props }, ref) => {
     const id = React.useId()
-    const value = React.useMemo(() => ({ id, invalid }), [id, invalid])
+    const value = React.useMemo(() => ({ id, invalid, size }), [id, invalid, size])
 
     return (
       <FormFieldContext.Provider value={value}>
@@ -52,10 +57,10 @@ export interface FormLabelProps
 export const FormLabel = React.forwardRef<
   React.ElementRef<typeof Label>,
   FormLabelProps
->(({ className, ...props }, ref) => {
-  const { id } = useFormField()
+>(({ className, size, ...props }, ref) => {
+  const { id, size: fieldSize } = useFormField()
 
-  return <Label ref={ref} htmlFor={id} className={className} {...props} />
+  return <Label ref={ref} htmlFor={id} size={size ?? fieldSize} className={className} {...props} />
 })
 
 FormLabel.displayName = 'FormLabel'
@@ -66,7 +71,11 @@ export interface FormControlProps extends React.HTMLAttributes<HTMLElement> {
 
 export const FormControl = React.forwardRef<HTMLElement, FormControlProps>(
   ({ children, ...props }, ref) => {
-    const { id, invalid } = useFormField()
+    const { id, invalid, size } = useFormField()
+
+    const control = size
+      ? React.cloneElement(children as React.ReactElement<{ size?: FormFieldSize }>, { size })
+      : children
 
     return (
       <Slot
@@ -76,7 +85,7 @@ export const FormControl = React.forwardRef<HTMLElement, FormControlProps>(
         aria-invalid={invalid || undefined}
         {...props}
       >
-        {children}
+        {control}
       </Slot>
     )
   },

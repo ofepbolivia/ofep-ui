@@ -8,8 +8,14 @@ const meta = {
     docs: {
       description: {
         component:
-          'Accessible label built on the Radix label primitive. Associate it with a control through `htmlFor` matching the control `id`. It dims automatically when a peer control is disabled and turns destructive inside an invalid `FormField`.',
+          'Accessible label built on the Radix label primitive. `size` supports `sm | md | lg` and follows the control it labels. Associate it with a control through `htmlFor` matching the control `id`. It dims automatically when a peer control is disabled and turns destructive inside an invalid `FormField`.',
       },
+    },
+  },
+  argTypes: {
+    size: {
+      control: 'select',
+      options: ['sm', 'md', 'lg'],
     },
   },
   args: {
@@ -26,6 +32,25 @@ export const Default: Story = {
     <Stack gap="sm" className="w-80">
       <Label {...args} htmlFor="label-input" />
       <Input id="label-input" placeholder="Enter full name" />
+    </Stack>
+  ),
+}
+
+export const Sizes: Story = {
+  render: () => (
+    <Stack gap="sm" className="w-80">
+      <Label size="sm" htmlFor="label-size-sm">
+        Small label
+      </Label>
+      <Input id="label-size-sm" size="sm" placeholder="Small control" />
+      <Label size="md" htmlFor="label-size-md">
+        Base label
+      </Label>
+      <Input id="label-size-md" size="md" placeholder="Base control" />
+      <Label size="lg" htmlFor="label-size-lg">
+        Large label
+      </Label>
+      <Input id="label-size-lg" size="lg" placeholder="Large control" />
     </Stack>
   ),
 }

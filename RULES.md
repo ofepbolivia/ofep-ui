@@ -89,10 +89,10 @@ Non-negotiables in that shape:
   - Form field controls rendered as bordered `surface-sunken` inputs (`Input`, `Textarea`, `FloatingInput`, `InputGroup`, `SelectTrigger`, `Combobox`, `FileInput`, and compositions built on them) use a bottom-border highlight: `focus-visible:outline-none focus-visible:border-b-ring`, and `aria-[invalid=true]:focus-visible:border-b-destructive` when invalid. The offset ring reads as too heavy on an already-bordered field. When the focusable element is nested, drive it from the wrapper with `has-[:focus-visible]:border-b-ring`.
   - Every other interactive control uses the offset ring: `focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background` (or `has-[:focus-visible]:ring-*` when the focusable element is nested).
 - Disabled state uses `disabled:pointer-events-none disabled:opacity-[var(--ofep-disabled-opacity)]` for real disabled controls. For controls that cannot be natively disabled (anchors, non-button `asChild` children), use `pointer-events-none` plus `aria-disabled`.
-- Sizes follow the `sm | md | lg` convention (`icon` where a square icon button is needed).
+- Sizes follow the `sm | md | lg` convention (`icon` where a square icon button is needed). Form controls share that scale, and a `Label` follows the size of the control it labels. `FormField` takes a single `size` and drives both its label and its control, so they stay in sync.
 - Reusable spacing and sizing decisions belong in component variants or layout primitives (`Container`, `Stack`, `Flex`, `Grid`, `DialogContent size`). App-specific width, height, margin, or max-size belongs in the consuming app's CSS or inline `style`, not as generic props on every component.
 - Tinted states (`Alert`, `Badge`) pair a base token with its `*-subtle` background.
-- Icons inside controls are sized via `[&_svg]:size-4 [&_svg]:shrink-0`, not per-icon classes.
+- Icons inside controls are sized via `[&_svg]:size-*` utilities with `[&_svg]:shrink-0`, not per-icon classes. Text controls keep `size-4` at every size; toggle controls (`Checkbox`, `RadioGroup`) scale the glyph with the control (`size-3 / size-4 / size-5` for `sm / md / lg`).
 
 ## Accessibility baseline
 
