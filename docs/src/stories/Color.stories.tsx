@@ -36,7 +36,7 @@ const semantic: Swatch[] = [
   { className: 'bg-warning', name: 'warning', value: '#B9410A', use: 'Deadlines, cautions' },
   { className: 'bg-info', name: 'info', value: '#2A5CAA', use: 'Notices, guidance' },
   { className: 'bg-accent', name: 'accent', value: '#7E2E84', use: 'Rare highlight states' },
-  { className: 'bg-destructive', name: 'destructive', value: '#8F1D25', use: 'Errors, destructive actions' },
+  { className: 'bg-destructive', name: 'destructive', value: '#A61F26', use: 'Errors, destructive actions' },
 ]
 
 function SwatchGrid({ items }: { items: Swatch[] }) {

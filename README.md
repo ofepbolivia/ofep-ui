@@ -108,7 +108,7 @@ The logo colors are kept as brand reference variables (`--ofep-brand-primary`, `
 | `warning` | `#b9410a` | `#e3a066` | Deadlines, cautions |
 | `info` | `#2a5caa` | `#93b4e5` | Notices, guidance |
 | `accent` | `#7e2e84` | `#c48aae` | Rare highlight states |
-| `destructive` | `#8f1d25` | `#ff8a80` | Errors and destructive actions |
+| `destructive` | `#a61f26` | `#ff8a80` | Errors and destructive actions |
 | Neutrals | warm paper/ink family | same hue, lightness shifted | Structure, borders, surfaces |
 
 Surface roles preserve document hierarchy without turning every section into a card:

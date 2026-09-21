@@ -273,7 +273,7 @@
   --ofep-brand-foreground: #ffffff;
   --ofep-brand-subtle: #f9ecec;
 
-  --ofep-destructive: #8f1d25;
+  --ofep-destructive: #a61f26;
   --ofep-destructive-foreground: #ffffff;
   --ofep-destructive-subtle: #f8e9ea;
 
@@ -314,7 +314,7 @@
   --ofep-surface-subtle: color-mix(in srgb, var(--ofep-surface) 65%, var(--ofep-surface-muted));
   --ofep-surface-sunken: #201e1d;
   --ofep-surface-raised: color-mix(in srgb, var(--ofep-surface) 88%, white);
-  --ofep-surface-overlay: color-mix(in srgb, var(--ofep-surface) 82%, white);
+  --ofep-surface-overlay: color-mix(in srgb, var(--ofep-surface) 90%, white);
   --ofep-border: #332e29;
   --ofep-border-subtle: color-mix(in srgb, var(--ofep-border) 65%, transparent);
   --ofep-border-strong: #463d38;
