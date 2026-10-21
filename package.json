@@ -22,7 +22,7 @@
     "**/*.css"
   ],
   "scripts": {
-    "preinstall": "node scripts/require-pnpm.cjs",
+    "pnpm:devPreinstall": "node scripts/require-pnpm.cjs",
     "dev": "tsup --watch",
     "build": "tsup && tailwindcss -i ./src/styles.css -o ./dist/styles.css --minify",
     "typecheck": "tsc --noEmit",
