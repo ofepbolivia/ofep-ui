@@ -1,6 +1,6 @@
 {
   "name": "@ofep-ui/react",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Institutional React design system distributed from Git.",
   "license": "UNLICENSED",
   "type": "module",
