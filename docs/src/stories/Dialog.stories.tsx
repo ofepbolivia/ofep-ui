@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import {
   Button,
+  Checkbox,
   Dialog,
   DialogClose,
   DialogContent,
@@ -9,6 +10,16 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  FormControl,
+  FormField,
+  FormLabel,
+  Input,
+  Label,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
   Stack,
 } from '../../../src'
 
@@ -83,5 +94,88 @@ export const Sizes: Story = {
         </Dialog>
       ))}
     </Stack>
+  ),
+}
+
+export const RegistrationForm: Story = {
+  render: () => (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button>Open registration</Button>
+      </DialogTrigger>
+      <DialogContent size="2xl">
+        <DialogHeader>
+          <DialogTitle>Create account</DialogTitle>
+          <DialogDescription>
+            Collect the required identity and contact information before creating the account.
+          </DialogDescription>
+        </DialogHeader>
+        <form className="grid gap-5">
+          <div className="grid gap-4 md:grid-cols-2">
+            <FormField>
+              <FormLabel>First name</FormLabel>
+              <FormControl>
+                <Input placeholder="John" required />
+              </FormControl>
+            </FormField>
+            <FormField>
+              <FormLabel>Last name</FormLabel>
+              <FormControl>
+                <Input placeholder="Doe" required />
+              </FormControl>
+            </FormField>
+            <FormField>
+              <FormLabel>Email address</FormLabel>
+              <FormControl>
+                <Input type="email" placeholder="john.doe@example.com" required />
+              </FormControl>
+            </FormField>
+            <FormField>
+              <FormLabel>Department</FormLabel>
+              <FormControl>
+                <Select required>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select a department" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="citizen-services">Citizen services</SelectItem>
+                    <SelectItem value="finance">Finance</SelectItem>
+                    <SelectItem value="legal-affairs">Legal affairs</SelectItem>
+                  </SelectContent>
+                </Select>
+              </FormControl>
+            </FormField>
+            <FormField>
+              <FormLabel>Password</FormLabel>
+              <FormControl>
+                <Input type="password" placeholder="Enter password" required />
+              </FormControl>
+            </FormField>
+            <FormField>
+              <FormLabel>Confirm password</FormLabel>
+              <FormControl>
+                <Input type="password" placeholder="Confirm password" required />
+              </FormControl>
+            </FormField>
+          </div>
+          <FormField>
+            <div className="flex items-start gap-2">
+              <Checkbox id="dialog-registration-terms" required />
+              <Label htmlFor="dialog-registration-terms" className="leading-relaxed">
+                I agree with the terms and conditions.
+              </Label>
+            </div>
+          </FormField>
+          <DialogFooter>
+            <DialogClose asChild>
+              <Button type="button" variant="secondary">
+                Cancel
+              </Button>
+            </DialogClose>
+            <Button type="submit">Create account</Button>
+          </DialogFooter>
+        </form>
+      </DialogContent>
+    </Dialog>
   ),
 }

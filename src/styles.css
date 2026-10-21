@@ -314,7 +314,7 @@
   --ofep-surface-subtle: color-mix(in srgb, var(--ofep-surface) 65%, var(--ofep-surface-muted));
   --ofep-surface-sunken: #201e1d;
   --ofep-surface-raised: color-mix(in srgb, var(--ofep-surface) 88%, white);
-  --ofep-surface-overlay: color-mix(in srgb, var(--ofep-surface) 90%, white);
+  --ofep-surface-overlay: color-mix(in srgb, var(--ofep-surface) 94%, white);
   --ofep-border: #332e29;
   --ofep-border-subtle: color-mix(in srgb, var(--ofep-border) 65%, transparent);
   --ofep-border-strong: #463d38;
