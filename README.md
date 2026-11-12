@@ -5,7 +5,7 @@ Institutional React design system distributed as a single Git-installed package.
 ## Installation
 
 ```bash
-pnpm add https://github.com/ofepbolivia/ofep-ui.git#v0.1.1
+pnpm add https://github.com/ofepbolivia/ofep-ui.git#v0.2.0
 ```
 
 Use Git tags for reproducible installs. Avoid installing from `main` in production applications.
@@ -39,6 +39,25 @@ export function Example() {
 ```
 
 The consuming application does not need Tailwind CSS. If it already uses Tailwind, it can apply its own utilities, but `@ofep-ui/react` only guarantees the compiled classes shipped in `@ofep-ui/react/styles.css`.
+
+### Password input
+
+`InputPassword` includes an accessible control to show or hide the password value.
+
+```tsx
+import { FormControl, FormField, FormLabel, InputPassword } from '@ofep-ui/react'
+
+export function PasswordField() {
+  return (
+    <FormField>
+      <FormLabel>Password</FormLabel>
+      <FormControl>
+        <InputPassword autoComplete="current-password" />
+      </FormControl>
+    </FormField>
+  )
+}
+```
 
 Use design-system variants for reusable sizing and layout decisions:
 
@@ -102,14 +121,14 @@ The logo colors are kept as brand reference variables (`--ofep-brand-primary`, `
 
 | Token | Light | Dark | Use |
 |---|---|---|---|
-| `primary` | `#3a3a3a` (graphite) | `#eee7df` | Main actions, structure |
-| `brand` | `#b8242a` (stamp red) | `#e06a60` | Institutional identity details |
-| `success` | `#2d7a2e` | `#84c97b` | Approvals, confirmations |
-| `warning` | `#b9410a` | `#e3a066` | Deadlines, cautions |
-| `info` | `#2a5caa` | `#93b4e5` | Notices, guidance |
-| `accent` | `#7e2e84` | `#c48aae` | Rare highlight states |
-| `destructive` | `#a61f26` | `#ff8a80` | Errors and destructive actions |
-| Neutrals | warm paper/ink family | same hue, lightness shifted | Structure, borders, surfaces |
+| `primary` | `#3a3a3a` (graphite) | `#e8edf4` | Main actions, structure |
+| `brand` | `#b8242a` (stamp red) | `#f68b82` | Institutional identity details |
+| `success` | `#2d7a2e` | `#8bd488` | Approvals, confirmations |
+| `warning` | `#b9410a` | `#f1b174` | Deadlines, cautions |
+| `info` | `#2a5caa` | `#a7c5ff` | Notices, guidance |
+| `accent` | `#7e2e84` | `#d8a0c8` | Rare highlight states |
+| `destructive` | `#a61f26` | `#ff8e88` | Errors and destructive actions |
+| Neutrals | warm paper/ink family | cool slate family (`#242732` canvas) | Structure, borders, surfaces |
 
 Surface roles preserve document hierarchy without turning every section into a card:
 
@@ -127,7 +146,7 @@ Elevation uses the semantic `resting`, `raised`, `floating`, and `overlay` shado
 Rules for contributors:
 
 - Neutral tones build structure and carry primary actions. Reserve `brand` for identity details: active tab indicator, focus ring, card top accent, and institutional status badges. Do not fill large surfaces with brand red.
-- Keep one hue family for all neutral surfaces; only shift lightness between theme levels.
+- Keep neutral surfaces cohesive within each theme: warm paper/ink in light mode and cool slate in dark mode.
 - Treat fields as inset surfaces, documents as flat surfaces, and transient UI as elevated surfaces.
 - Use the 4 px spacing grid and the `32 / 40 / 48 px` control scale for `sm / md / lg` form controls. Labels follow the size of their control; set `size` once on `FormField` and it drives both the label and the control.
 - Each semantic token has a matching `*-subtle` background for tinted states (badges, alerts).
