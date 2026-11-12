@@ -41,7 +41,7 @@ export const FormField = React.forwardRef<HTMLDivElement, FormFieldProps>(
         <div
           ref={ref}
           data-invalid={invalid || undefined}
-          className={cn('group flex flex-col [&>*+*]:mt-2 [&>p]:mt-0.5', className)}
+          className={cn('group flex flex-col [&>*+*]:mt-2 [&>p]:mt-0.5 [&>label]:ml-px', className)}
           {...props}
         />
       </FormFieldContext.Provider>

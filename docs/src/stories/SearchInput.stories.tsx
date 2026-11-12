@@ -8,7 +8,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Search field with a built-in submit action. Use `showLabel` and `label` for a visible label; otherwise it renders an accessible label. Pass `onSubmit` to handle the query.',
+          'Search field without a visible action by default. Set `showButton` to add a submit button. Use `showLabel` and `label` for a visible label; otherwise it renders an accessible label. Pass `onSubmit` to handle the query.',
       },
     },
   },
@@ -39,6 +39,7 @@ export const CustomAction: Story = {
     <SearchInput
       className="w-96"
       placeholder="Search requests"
+      showButton
       buttonLabel="Find"
       onSubmit={(event) => event.preventDefault()}
     />

@@ -14,6 +14,7 @@ export interface SearchInputProps
   inputProps?: Omit<InputGroupInputProps, 'placeholder' | 'type'>
   label?: React.ReactNode
   placeholder?: string
+  showButton?: boolean
   showLabel?: boolean
 }
 
@@ -26,6 +27,7 @@ export const SearchInput = React.forwardRef<HTMLFormElement, SearchInputProps>(
       inputProps,
       label = 'Search',
       placeholder = 'Search',
+      showButton = false,
       showLabel = false,
       ...props
     },
@@ -51,14 +53,16 @@ export const SearchInput = React.forwardRef<HTMLFormElement, SearchInputProps>(
             required
             {...inputProps}
           />
-          <Button
-            type="submit"
-            size="sm"
-            className={cn('mr-1 self-center h-7 px-3 text-xs', buttonClassName)}
-            {...actionProps}
-          >
-            {buttonLabel}
-          </Button>
+          {showButton && (
+            <Button
+              type="submit"
+              size="sm"
+              className={cn('mr-1 self-center h-7 px-3 text-xs', buttonClassName)}
+              {...actionProps}
+            >
+              {buttonLabel}
+            </Button>
+          )}
         </InputGroup>
       </form>
     )

@@ -8,15 +8,6 @@ interface Swatch {
   use: string
 }
 
-const arc: Swatch[] = [
-  { className: 'bg-arc-yellow', name: 'arc-yellow', value: '#ECC129', use: 'Identity and data' },
-  { className: 'bg-arc-green', name: 'arc-green', value: '#5BB351', use: 'Identity and data' },
-  { className: 'bg-arc-orange', name: 'arc-orange', value: '#E57B25', use: 'Identity and data' },
-  { className: 'bg-arc-purple', name: 'arc-purple', value: '#7E2E84', use: 'Identity and data' },
-  { className: 'bg-arc-red', name: 'arc-red', value: '#B8242A', use: 'Institutional identity' },
-  { className: 'bg-arc-blue', name: 'arc-blue', value: '#2A5CAA', use: 'Identity and data' },
-]
-
 const neutrals: Swatch[] = [
   { className: 'bg-surface-canvas border border-border', name: 'surface-canvas', value: '#FBFAF8', use: 'Application canvas' },
   { className: 'bg-surface-document border border-border', name: 'surface-document', value: '#FFFFFF', use: 'Documents and content' },
@@ -66,8 +57,8 @@ const meta = {
     docs: {
       description: {
         component:
-          'Institutional palette. The **arc** holds the exact logo colors and is reserved for identity fills and data. The **semantic** tokens drive components and adapt to light and dark themes. Warm neutral surface roles build document hierarchy.\n\n' +
-          'Use semantic tokens in components; reach for `arc-*` only for identity fills, data categories and charts, never for text on light surfaces (the raw hues do not meet 4.5:1).',
+          'The **semantic** tokens drive components and adapt to light and dark themes. Warm neutral surface roles build document hierarchy.\n\n' +
+          'Use semantic tokens in components; they preserve intent and keep the interface consistent across themes.',
       },
     },
   },
@@ -80,12 +71,6 @@ type Story = StoryObj<typeof meta>
 export const Palette: Story = {
   render: () => (
     <Stack gap="lg">
-      <section className="space-y-3">
-        <h3 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
-          Institutional arc
-        </h3>
-        <SwatchGrid items={arc} />
-      </section>
       <section className="space-y-3">
         <h3 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
           Neutral structure

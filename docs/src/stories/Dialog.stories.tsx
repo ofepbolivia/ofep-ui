@@ -30,14 +30,14 @@ const meta = {
     docs: {
       description: {
         component:
-          'Modal window that renders the page underneath inert. Compose `Dialog` > `DialogTrigger` + `DialogContent`, and always include `DialogTitle` and `DialogDescription` for screen readers. `DialogContent` portals to the body and traps focus. `size` supports `sm | md | lg | xl | 2xl | full` and defaults to `lg`.',
+          'Modal window that renders the page underneath inert. Compose `Dialog` > `DialogTrigger` + `DialogContent`, and always include `DialogTitle` and `DialogDescription` for screen readers. `DialogContent` portals to the body and traps focus. `size` supports `sm | md | lg | xl | 2xl | 3xl | 4xl | full` and defaults to `lg`.',
       },
     },
   },
   argTypes: {
     size: {
       control: 'select',
-      options: ['sm', 'md', 'lg', 'xl', '2xl', 'full'],
+      options: ['sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl', 'full'],
     },
   },
 } satisfies Meta<typeof DialogContent>
@@ -73,7 +73,7 @@ export const Confirmation: Story = {
 export const Sizes: Story = {
   render: () => (
     <Stack gap="sm" direction="row" className="flex-wrap">
-      {(['sm', 'md', 'lg', 'xl', '2xl', 'full'] as const).map((size) => (
+      {(['sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl', 'full'] as const).map((size) => (
         <Dialog key={size}>
           <DialogTrigger asChild>
             <Button variant="secondary">{size}</Button>
